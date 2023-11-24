@@ -65,7 +65,7 @@ function AddExpenseForm({ budgets }) {
             <span>Submitting...</span>
           ) : (
             <>
-              <PlusCircleIcon width={20} />
+              <PlusCircleIcon width={24} />
               <span>Create Expense</span>
             </>
           )}

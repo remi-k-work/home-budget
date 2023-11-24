@@ -25,7 +25,7 @@ function Nav({ userName }) {
           }}
         >
           <button type="submit" className="btn btn--warning">
-            <TrashIcon width={20} />
+            <TrashIcon width={24} />
             <span>Delete User</span>
           </button>
         </Form>

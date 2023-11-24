@@ -1,13 +1,13 @@
 // components
 import ExpenseItem from "./ExpenseItem";
 
-function Table({ expenses }) {
+function Table({ expenses, showBudget = true }) {
   return (
     <div className="table">
       <table>
         <thead>
           <tr>
-            {["Name", "Amount", "Date"].map((i, index) => {
+            {["Name", "Amount", "Date", showBudget ? "Budget" : "", ""].map((i, index) => {
               return <th key={index}>{i}</th>;
             })}
           </tr>
@@ -16,7 +16,7 @@ function Table({ expenses }) {
           {expenses.map((expense) => {
             return (
               <tr key={expense.id}>
-                <ExpenseItem expense={expense} />
+                <ExpenseItem expense={expense} showBudget={showBudget} />
               </tr>
             );
           })}

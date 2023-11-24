@@ -1,11 +1,11 @@
 // rrd imports
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 // library
 import { toast } from "react-toastify";
 
 // helper functions
-import { createBudget, createExpense, fetchData, waait } from "../helpers";
+import { createBudget, createExpense, deleteItem, fetchData, waait } from "../helpers";
 
 // components
 import Intro from "../components/Intro";
@@ -41,10 +41,17 @@ function Dashboard() {
                   <div className="gid-md">
                     <h2>Recent Expenses</h2>
                     <Table
-                      expenses={expenses.sort((a, b) => {
-                        return b.createdAt - a.createdAt;
-                      })}
+                      expenses={expenses
+                        .sort((a, b) => {
+                          return b.createdAt - a.createdAt;
+                        })
+                        .slice(0, 8)}
                     />
+                    {expenses.length > 8 && (
+                      <Link to="expenses" className="btn btn--dark">
+                        View All Expenses
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
@@ -93,7 +100,7 @@ async function dashboardAction({ request }) {
     // Creating a new budget
     case "createBudget":
       try {
-        createBudget({ name: values.newBudget, amount: values.newBudgetAmount });
+        createBudget(values.newBudget, values.newBudgetAmount);
         return toast.success(`Budget "${values.newBudget}" created!`);
       } catch (error) {
         throw new Error("There was a problem creating your budget.");
@@ -102,10 +109,19 @@ async function dashboardAction({ request }) {
     // Creating a new expense
     case "createExpense":
       try {
-        createExpense({ name: values.newExpense, amount: values.newExpenseAmount, budgetId: values.newExpenseBudget });
+        createExpense(values.newExpense, values.newExpenseAmount, values.newExpenseBudget);
         return toast.success(`Expense "${values.newExpense}" created!`);
       } catch (error) {
         throw new Error("There was a problem creating your expense.");
+      }
+
+    // Delete an existing expense
+    case "deleteExpense":
+      try {
+        deleteItem("expenses", values.expenseId);
+        return toast.success("Expense deleted!");
+      } catch (error) {
+        throw new Error("There was a problem deleting your expense.");
       }
   }
 }

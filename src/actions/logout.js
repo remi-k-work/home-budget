@@ -9,9 +9,9 @@ import { deleteItem } from "../helpers";
 
 async function logoutAction() {
   // Delete the user
-  deleteItem({ key: "userName" });
-  deleteItem({ key: "budgets" });
-  deleteItem({ key: "expenses" });
+  deleteItem("userName");
+  deleteItem("budgets");
+  deleteItem("expenses");
 
   toast.success("You have deleted your account!");
 

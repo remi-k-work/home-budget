@@ -38,7 +38,7 @@ function AddBudgetForm() {
             <span>Submitting...</span>
           ) : (
             <>
-              <CurrencyDollarIcon width={20} />
+              <CurrencyDollarIcon width={24} />
               <span>Create Budget</span>
             </>
           )}

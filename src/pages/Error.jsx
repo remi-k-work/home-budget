@@ -19,11 +19,11 @@ function Error() {
             navigate(-1);
           }}
         >
-          <ArrowUturnLeftIcon width={20} />
+          <ArrowUturnLeftIcon width={24} />
           <span>Go Back</span>
         </button>
         <Link to="/" className="btn btn--dark">
-          <HomeIcon width={20} />
+          <HomeIcon width={24} />
           <span>Go Home</span>
         </Link>
       </div>

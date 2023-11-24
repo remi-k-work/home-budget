@@ -18,7 +18,7 @@ function Intro() {
         <Form method="post">
           <input type="text" name="userName" placeholder="What is your name?" aria-label="Your Name" autoComplete="given-name" required />
           <button type="submit" name="intent" value={"createAccount"} className="btn btn--dark">
-            <UserPlusIcon width={20} />
+            <UserPlusIcon width={24} />
             <span>Create Account</span>
           </button>
         </Form>

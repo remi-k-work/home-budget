@@ -12,8 +12,23 @@ function fetchData(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-function deleteItem({ key }) {
-  localStorage.removeItem(key);
+function getAllMatchingItems(category, key, value) {
+  const data = fetchData(category) ?? [];
+  return data.filter((item) => {
+    return item[key] === value;
+  });
+}
+
+function deleteItem(key, id) {
+  if (id) {
+    const existingData = fetchData(key);
+    const newData = existingData.filter((item) => {
+      return item.id !== id;
+    });
+    localStorage.setItem(key, JSON.stringify(newData));
+  } else {
+    localStorage.removeItem(key);
+  }
 }
 
 function generateRandomColor() {
@@ -21,7 +36,7 @@ function generateRandomColor() {
   return `${existingBudgetLength * 34} 65% 50%`;
 }
 
-function createBudget({ name, amount }) {
+function createBudget(name, amount) {
   const newBudget = {
     id: crypto.randomUUID(),
     createdAt: Date.now(),
@@ -34,7 +49,7 @@ function createBudget({ name, amount }) {
   localStorage.setItem("budgets", JSON.stringify([...existingBudgets, newBudget]));
 }
 
-function createExpense({ name, amount, budgetId }) {
+function createExpense(name, amount, budgetId) {
   const newExpense = {
     id: crypto.randomUUID(),
     createdAt: Date.now(),
@@ -72,4 +87,15 @@ function calculateSpentByBudget(budgetId) {
   return budgetSpent;
 }
 
-export { waait, fetchData, deleteItem, createBudget, createExpense, formatCurrency, formatPercentage, formatDateToLocaleString, calculateSpentByBudget };
+export {
+  waait,
+  fetchData,
+  getAllMatchingItems,
+  deleteItem,
+  createBudget,
+  createExpense,
+  formatCurrency,
+  formatPercentage,
+  formatDateToLocaleString,
+  calculateSpentByBudget,
+};
