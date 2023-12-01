@@ -5,14 +5,14 @@ import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// *** Layouts ***
+import Main, { mainLoader } from "./layouts/Main";
+
 // *** Pages ***
 import Dashboard, { dashboardLoader, dashboardAction } from "./pages/Dashboard";
 import Budget, { budgetLoader, budgetAction } from "./pages/Budget";
 import Expenses, { expensesLoader, expensesAction } from "./pages/Expenses";
 import Error from "./pages/Error";
-
-// *** Layouts ***
-import Main, { mainLoader } from "./layouts/Main";
 
 // *** Actions ***
 import { logoutAction } from "./actions/logout";

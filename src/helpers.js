@@ -3,7 +3,7 @@ function waait() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
-    }, Math.random() * 2000);
+    }, Math.random() * 800);
   });
 }
 
